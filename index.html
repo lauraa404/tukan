@@ -3,9 +3,660 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Tukan</title>
+    <title>🐦Project Tukan</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* Container */
+.app {
+    max-width: 390px; /* iPhone 13 Breite */
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* Header */
+.header {
+    margin-bottom: 20px;
+}
+
+.progress-text {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 30%; /* Beispiel */
+    height: 100%;
+    background: #4caf50;
+}
+
+/* Medaillen */
+.badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.badge {
+    font-size: 12px;
+    background: #eee;
+    padding: 6px 8px;
+    border-radius: 10px;
+}
+
+/* Grid */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Karte */
+.card {
+    width: calc(33.333% - 7px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bildbereich */
+.image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+    filter: grayscale(100%);
+}
+
+.image img {
+    width: 100%;
+}
+
+/* Overlay Text */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 6px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 11px;
+}
+
+.overlay .title {
+    font-weight: bold;
+}
+
+.overlay .location {
+    opacity: 0.8;
+}
+
+/* Datum unten */
+.date {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    font-size: 10px;
+    color: white;
+    text-align: center;
+    display: none; /* später sichtbar */
+}
+
+/* Button */
+button {
+    margin-top: 6px;
+    padding: 6px;
+    font-size: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #4caf50;
+    color: white;
+}
+
+.card.seen .image {
+    filter: grayscale(0%);
+}
+
+.card.seen .date {
+    display: block;
+}
+</style>
 </head>
+
 <body>
-    <h1>Project Tukan</h1>
+
+<div class="app">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="progress-text"></div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="badges">
+            <div class="badge">🥉 1. Tukan</div>
+            <div class="badge">🥈 5 Tukane</div>
+            <div class="badge">⭐ Spezial</div>
+        </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+
+        <!-- Karte 1 -->
+         <div class="card" data-id="tukan1">
+            <div class="image">
+                <img src="bahnhof.png">
+            <div class="overlay">
+                <div class="title">Bahnhof Tukan</div>
+                <div class="location">Bahnhof</div>
+            </div>
+            <div class="date"></div>
+            </div>
+            <button onclick="toggleTukan(this)">Gesehen?</button>
+        </div>
+
+
+        <!-- Karte 2 -->
+         <div class="card" data-id="tukan2">
+    <div class="image">
+        <img src="bomlitzerstr.png">
+        <div class="overlay">
+            <div class="title">Ampel Tukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 3 -->
+         <div class="card" data-id="tukan3">
+    <div class="image">
+        <img src="eckernworth.png">
+        <div class="overlay">
+            <div class="title">Gasthaus Tukan</div>
+            <div class="location">Eckernworth</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+               <!-- Karte 4 -->
+         <div class="card" data-id="tukan4">
+    <div class="image">
+        <img src="honedingen6.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+        <!-- Karte 5 -->
+         <div class="card" data-id="tukan5">
+    <div class="image">
+        <img src="kino.png">
+        <div class="overlay">
+            <div class="title">Film Tukan</div>
+            <div class="location">Capitol</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 6 -->
+         <div class="card" data-id="tukan6">
+    <div class="image">
+        <img src="kleinergraben.png">
+        <div class="overlay">
+            <div class="title">Garten Tukan</div>
+            <div class="location">Kleiner Graben</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 7 -->
+         <div class="card" data-id="tukan7">
+    <div class="image">
+        <img src="krankenhaus.jpg">
+        <div class="overlay">
+            <div class="title">Kranker Tukan</div>
+            <div class="location">Krankenhaus</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+        <!-- Karte 8 -->
+         <div class="card" data-id="tukan8">
+    <div class="image">
+        <img src="honerdingen1.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 9 -->
+         <div class="card" data-id="tukan9">
+    <div class="image">
+        <img src="honerdingen2.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 10 -->
+         <div class="card" data-id="tukan10">
+    <div class="image">
+        <img src="kreisel1.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+        <!-- Karte 11 -->
+         <div class="card" data-id="tukan11">
+    <div class="image">
+        <img src="rathaus.jpg">
+        <div class="overlay">
+            <div class="title">Rathaus Tukan</div>
+            <div class="location">Innenstadt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+        <!-- Karte 12 -->
+         <div class="card" data-id="tukan12">
+    <div class="image">
+        <img src="honerdingen3.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+           <!-- Karte 13 -->
+         <div class="card" data-id="tukan13">
+    <div class="image">
+        <img src="sparkasse.jpg">
+        <div class="overlay">
+            <div class="title">Sparkassen Tukan</div>
+            <div class="location">Innenstadt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+    <!-- Karte 14 -->
+         <div class="card" data-id="tukan14">
+    <div class="image">
+        <img src="unbekannt.png">
+        <div class="overlay">
+            <div class="title">Unbekannter Tukan</div>
+            <div class="location">Unbekannt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+   <!-- Karte 15 -->
+         <div class="card" data-id="tukan15">
+    <div class="image">
+        <img src="vogelpark1.png">
+        <div class="overlay">
+            <div class="title">Fast echter Tukan</div>
+            <div class="location">Vogelpark</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+   <!-- Karte 16 -->
+         <div class="card" data-id="tukan16">
+    <div class="image">
+        <img src="honerdingen4.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+   <!-- Karte 17 -->
+         <div class="card" data-id="tukan17">
+    <div class="image">
+        <img src="kreisel2.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 18 -->
+         <div class="card" data-id="tukan18">
+    <div class="image">
+        <img src="vogelpark2.png">
+        <div class="overlay">
+            <div class="title">Tukaniger Tukan</div>
+            <div class="location">Vogelpark</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 19 -->
+         <div class="card" data-id="tukan19">
+    <div class="image">
+        <img src="unbekannt1.png">
+        <div class="overlay">
+            <div class="title">Unbekannter Tukan</div>
+            <div class="location">Unbekannt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 20 -->
+         <div class="card" data-id="tukan20">
+    <div class="image">
+        <img src="volksbank.jpg">
+        <div class="overlay">
+            <div class="title">Reicher Tukan</div>
+            <div class="location">Volksbank</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 21 -->
+         <div class="card" data-id="tukan21">
+    <div class="image">
+        <img src="kreisel3.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 22 -->
+         <div class="card" data-id="tukan22">
+    <div class="image">
+        <img src="kreisel4.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+  <!-- Karte 23 -->
+         <div class="card" data-id="tukan23">
+    <div class="image">
+        <img src="stadthalle.jpg">
+        <div class="overlay">
+            <div class="title">Feierlicher Tukan</div>
+            <div class="location">Stadthalle</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 25 -->
+         <div class="card" data-id="tukan25">
+    <div class="image">
+        <img src="tukanlangestrasse.png">
+        <div class="overlay">
+            <div class="title">Unscheinbarer Tukan</div>
+            <div class="location">Innenstadt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 26 -->
+         <div class="card" data-id="tukan26">
+    <div class="image">
+        <img src="unbekannt2.png">
+        <div class="overlay">
+            <div class="title">Unbekannter Tukan</div>
+            <div class="location">Unbekannt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+  <!-- Karte 27 -->
+         <div class="card" data-id="tukan27">
+    <div class="image">
+        <img src="honerdingen5.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Honerdingen</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 28 -->
+         <div class="card" data-id="tukan28">
+    <div class="image">
+        <img src="kreisel5.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 29 -->
+         <div class="card" data-id="tukan29">
+    <div class="image">
+        <img src="vogelpark3.png">
+        <div class="overlay">
+            <div class="title">Pelikan???</div>
+            <div class="location">Vogelpark</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 30 -->
+         <div class="card" data-id="tukan30">
+    <div class="image">
+        <img src="unbekannt3.png">
+        <div class="overlay">
+            <div class="title">Unbekannter Tukan</div>
+            <div class="location">Unbekannt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 31 -->
+         <div class="card" data-id="tukan31">
+    <div class="image">
+        <img src="kreisel6.png">
+        <div class="overlay">
+            <div class="title">Kreiseltukan</div>
+            <div class="location">Tukankreisel</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+ 
+
+  <!-- Karte 32 -->
+         <div class="card" data-id="tukan32">
+    <div class="image">
+        <img src="rathaustourikan.png">
+        <div class="overlay">
+            <div class="title">Tourikan Tukan</div>
+            <div class="location">Innenstadt</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 33 -->
+         <div class="card" data-id="tukan33">
+    <div class="image">
+        <img src="vogelpark4.png">
+        <div class="overlay">
+            <div class="title">Parkender Tukan</div>
+            <div class="location">Vogelpark</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+  <!-- Karte 34 -->
+         <div class="card" data-id="tukan34">
+    <div class="image">
+        <img src="vogelpark5.png">
+        <div class="overlay">
+            <div class="title">Vogeliger Tukan</div>
+            <div class="location">Vogelpark</div>
+        </div>
+        <div class="date"></div>
+    </div>
+    <button onclick="toggleTukan(this)">Gesehen?</button>
+</div>
+
+
+</div>
+
+
+<script>
+function toggleTukan(button) {
+    const card = button.parentElement;
+    const id = card.dataset.id;
+    const dateEl = card.querySelector(".date");
+
+    let isSeen = card.classList.contains("seen");
+
+    if (isSeen) {
+        // zurücksetzen
+        card.classList.remove("seen");
+        localStorage.removeItem(id);
+        dateEl.textContent = "";
+    } else {
+        // markieren
+        card.classList.add("seen");
+
+        const today = new Date().toLocaleDateString("de-DE");
+        dateEl.textContent = today;
+
+        localStorage.setItem(id, today);
+    }
+
+    updateProgress();
+}
+
+function loadState() {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const id = card.dataset.id;
+        const savedDate = localStorage.getItem(id);
+
+        if (savedDate) {
+            card.classList.add("seen");
+            card.querySelector(".date").textContent = savedDate;
+        }
+    });
+
+    updateProgress();
+}
+
+function updateProgress() {
+    const total = document.querySelectorAll(".card").length;
+    const seen = document.querySelectorAll(".card.seen").length;
+
+    document.querySelector(".progress-text").textContent =
+        `${seen} / ${total} Tukane gesammelt`;
+
+    const percent = (seen / total) * 100;
+    document.querySelector(".progress-fill").style.width = percent + "%";
+}
+
+// beim Laden ausführen
+loadState();
+</script>
 </body>
 </html>
