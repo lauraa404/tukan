@@ -48,6 +48,8 @@ body {
     display: flex;
     gap: 8px;
     margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .badge {
@@ -55,6 +57,21 @@ body {
     background: #eee;
     padding: 6px 8px;
     border-radius: 10px;
+}
+.badge {
+    font-size: 12px;
+    background: #eee;
+    padding: 6px 8px;
+    border-radius: 10px;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+/* freigeschaltet */
+.badge.active {
+    opacity: 1;
+    background: #4caf50;
+    color: white;
 }
 
 /* Grid */
@@ -80,6 +97,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     filter: grayscale(100%);
+    border: 3px solid #999999;
 }
 
 .image img {
@@ -127,10 +145,17 @@ button {
     border-radius: 8px;
     background: #4caf50;
     color: white;
+    margin-bottom: 0.5em;
 }
+
 
 .card.seen .image {
     filter: grayscale(0%);
+    border: 3px solid #4caf50;
+}
+
+.card.seen button {
+    background-color: rgb(185, 185, 185);
 }
 
 .card.seen .date {
@@ -166,6 +191,13 @@ button {
         opacity: 0;
     }
 }
+
+h1 {
+    text-align: center;
+    width: 100%;
+    color: #af0d1a;
+    padding: 0.5em ;
+}
 </style>
 </head>
 
@@ -176,15 +208,19 @@ button {
 
     <!-- Header -->
     <div class="header">
+        <h1>🐦 Projekt Tukan 🐦</h1>
         <div class="progress-text"></div>
         <div class="progress-bar">
             <div class="progress-fill"></div>
         </div>
 
-        <div class="badges">
-            <div class="badge">🥉 1. Tukan</div>
-            <div class="badge">🥈 5 Tukane</div>
-            <div class="badge">⭐ Spezial</div>
+       <div class="badges">
+            <div class="badge" id="badge-1">✨ 1. Tukan</div>
+            <div class="badge" id="badge-5">🥉 5 Tukane</div>
+            <div class="badge" id="badge-10">🥈 10 Tukane</div>
+            <div class="badge" id="badge-20">🥇 20 Tukane</div>
+            <div class="badge" id="badge-all">💯 Tukanspezialistin</div>
+            <div class="badge" id="badge-special">⭐ Spezial</div>
         </div>
     </div>
 
@@ -365,7 +401,7 @@ button {
 </div>
 
     <!-- Karte 14 -->
-         <div class="card" data-id="tukan14">
+         <div class="card" data-id="tukan-unbekannt1">
     <div class="image">
         <img src="unbekannt.png">
         <div class="overlay">
@@ -431,7 +467,7 @@ button {
 </div>
 
   <!-- Karte 19 -->
-         <div class="card" data-id="tukan19">
+         <div class="card" data-id="tukan-unbekannt2">
     <div class="image">
         <img src="unbekannt1.png">
         <div class="overlay">
@@ -510,7 +546,7 @@ button {
 </div>
 
   <!-- Karte 26 -->
-         <div class="card" data-id="tukan26">
+         <div class="card" data-id="tukan-unbekannt3">
     <div class="image">
         <img src="unbekannt2.png">
         <div class="overlay">
@@ -563,7 +599,7 @@ button {
 </div>
 
   <!-- Karte 30 -->
-         <div class="card" data-id="tukan30">
+         <div class="card" data-id="tukan-unbekannt4">
     <div class="image">
         <img src="unbekannt3.png">
         <div class="overlay">
@@ -668,7 +704,8 @@ function toggleTukan(button) {
     }
 
     updateProgress();
-    checkAchievements();
+checkAchievements();
+updateBadges();
 }
 
 function loadState() {
@@ -685,6 +722,15 @@ function loadState() {
     });
 
     updateProgress();
+
+    updateBadges();
+
+// gespeicherte Badges wieder aktivieren
+document.querySelectorAll(".badge").forEach(badge => {
+    if (localStorage.getItem(badge.id)) {
+        badge.classList.add("active");
+    }
+});
 }
 
 function updateProgress() {
@@ -743,6 +789,42 @@ function triggerConfetti() {
 function randomColor() {
     const colors = ["#ff5252", "#ffeb3b", "#4caf50", "#2196f3", "#ff9800"];
     return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function updateBadges() {
+    const total = document.querySelectorAll(".card").length;
+    const seen = document.querySelectorAll(".card.seen").length;
+
+    // normale Achievements
+    if (seen >= 1) activateBadge("badge-1");
+    if (seen >= 5) activateBadge("badge-5");
+    if (seen >= 10) activateBadge("badge-10");
+    if (seen >= 20) activateBadge("badge-20");
+
+    // alle gefunden
+    if (seen === total) activateBadge("badge-all");
+
+    // Spezial: unbekannte Tukans
+    const specialFound = document.querySelectorAll(
+        '.card.seen[data-id*="unbekannt"]'
+    ).length;
+
+    if (specialFound > 0) activateBadge("badge-special");
+}
+
+// Badge aktivieren + speichern
+function activateBadge(id) {
+    const el = document.getElementById(id);
+
+    if (!el.classList.contains("active")) {
+        el.classList.add("active");
+
+        // merken im localStorage
+        localStorage.setItem(id, true);
+
+        // Animation triggern (optional)
+        triggerConfetti();
+    }
 }
 </script>
 </body>
