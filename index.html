@@ -136,10 +136,41 @@ button {
 .card.seen .date {
     display: block;
 }
+
+/* Konfetti Container */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* einzelne Partikel */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall 1.5s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
 <body>
+<div class="confetti-container"></div>
 
 <div class="app">
 
@@ -150,7 +181,11 @@ button {
             <div class="progress-fill"></div>
         </div>
 
-      
+        <div class="badges">
+            <div class="badge">🥉 1. Tukan</div>
+            <div class="badge">🥈 5 Tukane</div>
+            <div class="badge">⭐ Spezial</div>
+        </div>
     </div>
 
     <!-- Grid -->
@@ -166,7 +201,7 @@ button {
             </div>
             <div class="date"></div>
             </div>
-            <button onclick="toggleTukan(this)">Gesehen?</button>
+            <button>Gesehen?</button>
         </div>
 
 
@@ -180,7 +215,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 3 -->
@@ -193,7 +228,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
                <!-- Karte 4 -->
@@ -206,7 +241,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -220,7 +255,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 6 -->
@@ -233,7 +268,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 7 -->
@@ -246,7 +281,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -260,7 +295,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 9 -->
@@ -273,7 +308,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 10 -->
@@ -286,7 +321,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -300,7 +335,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
         <!-- Karte 12 -->
@@ -313,7 +348,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
            <!-- Karte 13 -->
@@ -326,7 +361,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
     <!-- Karte 14 -->
@@ -339,7 +374,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
    <!-- Karte 15 -->
@@ -352,7 +387,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
    <!-- Karte 16 -->
@@ -365,7 +400,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -379,7 +414,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 18 -->
@@ -392,7 +427,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 19 -->
@@ -405,7 +440,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 20 -->
@@ -418,7 +453,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 21 -->
@@ -431,7 +466,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 22 -->
@@ -444,7 +479,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -458,7 +493,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 25 -->
@@ -471,7 +506,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 26 -->
@@ -484,7 +519,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -498,7 +533,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 28 -->
@@ -511,7 +546,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 29 -->
@@ -524,7 +559,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 30 -->
@@ -537,7 +572,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 31 -->
@@ -550,7 +585,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
  
@@ -565,7 +600,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 33 -->
@@ -578,7 +613,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
   <!-- Karte 34 -->
@@ -591,7 +626,7 @@ button {
         </div>
         <div class="date"></div>
     </div>
-    <button onclick="toggleTukan(this)">Gesehen?</button>
+    <button>Gesehen?</button>
 </div>
 
 
@@ -599,6 +634,17 @@ button {
 
 
 <script>
+   document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", function() {
+            toggleTukan(this);
+        });
+    });
+
+    loadState();
+});
+
 function toggleTukan(button) {
     const card = button.parentElement;
     const id = card.dataset.id;
@@ -622,6 +668,7 @@ function toggleTukan(button) {
     }
 
     updateProgress();
+    checkAchievements();
 }
 
 function loadState() {
@@ -653,6 +700,50 @@ function updateProgress() {
 
 // beim Laden ausführen
 loadState();
+
+
+// Achievements definieren
+const achievements = [1, 5, 10, 20];
+
+// prüfen ob Achievement erreicht
+function checkAchievements() {
+    const seen = document.querySelectorAll(".card.seen").length;
+
+    achievements.forEach(num => {
+        const key = "achievement_" + num;
+
+        if (seen >= num && !localStorage.getItem(key)) {
+            triggerConfetti();
+            localStorage.setItem(key, true);
+        }
+    });
+}
+
+// Konfetti erzeugen
+function triggerConfetti() {
+    const container = document.querySelector(".confetti-container");
+
+    for (let i = 0; i < 40; i++) {
+        const el = document.createElement("div");
+        el.classList.add("confetti");
+
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.top = "-10px";
+
+        el.style.background = randomColor();
+        el.style.animationDuration = (1 + Math.random()) + "s";
+
+        container.appendChild(el);
+
+        setTimeout(() => el.remove(), 1500);
+    }
+}
+
+// zufällige Farben
+function randomColor() {
+    const colors = ["#ff5252", "#ffeb3b", "#4caf50", "#2196f3", "#ff9800"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
 </script>
 </body>
 </html>
